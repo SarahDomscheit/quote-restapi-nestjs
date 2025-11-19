@@ -9,7 +9,7 @@ export class QuoteService {
     @InjectRepository(Quote) private quotesRepository: Repository<Quote>,
   ) {}
 
-  async getAllQuotes(): Promise<Quote[]> {
+  getAllQuotes(): Promise<Quote[]> {
     return this.quotesRepository.find();
   }
 
@@ -22,11 +22,14 @@ export class QuoteService {
   }
 
   async getRandomQuotes(): Promise<Quote[]> {
-    return await this.quotesRepository
-      .createQueryBuilder('quote')
-      .orderBy('RANDOM()')
-      .limit(1)
-      .getMany();
+    const allQuotes = await this.quotesRepository.find();
+
+    if (allQuotes.length === 0) {
+      return [];
+    }
+
+    const randomIndex = Math.floor(Math.random() * allQuotes.length);
+    return [allQuotes[randomIndex]];
   }
 
   async createQuote(author: string, quote: string): Promise<Quote> {

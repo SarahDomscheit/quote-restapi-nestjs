@@ -10,7 +10,7 @@ import { Quote } from './quotes/quote.entity';
     QuoteModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'nestjs',
+      database: 'quotes.db',
       entities: [Quote],
       synchronize: true, // niemals in Produktion verwenden
       logging: false,
