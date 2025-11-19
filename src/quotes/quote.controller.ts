@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { QuoteService } from './quote.service';
-import { Quote } from './quote.interface';
+import { Quote } from './quote.entity';
 
 @Controller(`quotes`)
 export class QuoteController {
