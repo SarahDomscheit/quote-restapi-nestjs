@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Quote } from './quote.entity';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Quote } from './interface/quote.entity';
 
 @Injectable()
 export class QuoteService {

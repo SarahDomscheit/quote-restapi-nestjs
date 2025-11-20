@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { QuoteController } from './quote.controller';
 import { QuoteService } from './quote.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Quote } from './quote.entity';
+import { Quote } from './interface/quote.entity';
 
 @Module({
   controllers: [QuoteController],
