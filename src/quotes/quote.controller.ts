@@ -12,6 +12,7 @@ import { QuoteService } from './quote.service';
 import { Quote } from './entities/quote.entity';
 import { Public } from 'src/public/decorators/public.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
+import { Roles } from 'src/public/decorators/roles.decorator';
 
 @Controller(`quotes`)
 export class QuoteController {
@@ -35,6 +36,7 @@ export class QuoteController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Roles('user', 'admin')
   @Post()
   createQuote(
     @Body('author') author: string,
@@ -44,6 +46,7 @@ export class QuoteController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Roles('admin')
   @Patch(`:id`)
   updateQuote(
     @Param(`id`) id: string,
@@ -54,6 +57,7 @@ export class QuoteController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Roles('admin')
   @Delete(`:id`)
   deleteQuote(@Param(`id`) id: string): Promise<void> {
     return this.quoteService.deleteQuote(id);
