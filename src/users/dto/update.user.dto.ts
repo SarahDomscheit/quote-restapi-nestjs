@@ -2,7 +2,7 @@ import { IsEmail, IsOptional, MinLength } from 'class-validator';
 
 export class UpdateUserDto {
   @IsOptional()
-  userName?: string;
+  username?: string;
 
   @IsOptional()
   @IsEmail()
